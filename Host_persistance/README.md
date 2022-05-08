@@ -2,9 +2,9 @@
 
 Following methods can be used to regain access to a compromised host.
 
-#### <b>1.</b> <a href="https://github.com/incredibleindishell/Red_Team_Op/new/main#1-registry-autoruns-1">Registry Autoruns</a>
-#### <b>2.</b> <a href="https://github.com/incredibleindishell/Red_Team_Op/new/main#2-scheduled-tasks-1">Scheduled Tasks</a>
-#### <b>3.</b> <a href="https://github.com/incredibleindishell/Red_Team_Op/new/main#3-startup-folder-1">Startup Folder</a>
+#### <b>1.</b> <a href="https://github.com/incredibleindishell/Red_Team_Op/blob/main/Host_persistance/README.md#1-registry-autoruns-1">Registry Autoruns</a>
+#### <b>2.</b> <a href="https://github.com/incredibleindishell/Red_Team_Op/blob/main/Host_persistance/README.md#2-scheduled-tasks-1">Scheduled Tasks</a>
+#### <b>3.</b> <a href="https://github.com/incredibleindishell/Red_Team_Op/blob/main/Host_persistance/README.md#3-startup-folder-1">Startup Folder</a>
 
 To create the payloads for above mentioned scenarios, user can use SharPersist tool from below mentioned Github Repo:
 
