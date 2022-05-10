@@ -43,6 +43,7 @@ Using PowerShell cmdlet:
 
 <img src=https://raw.githubusercontent.com/incredibleindishell/Red_Team_Op/main/Unquoted_service_path/images/wmic_enum3.png width="900" height="500"/>
 
+Note: Discovery of unquoted service can be performed using PowerUp PowerShell script as well. The function name is `Get-UnquotedService`.
 
 
 #### 2. Exploation 
